@@ -21,11 +21,10 @@
 			"pluginZipFile": {
 				"resource": "wordpress.org/plugins",
 				"slug": "embed-sharepoint-onedrive-documents"
-			}
-		},
-		{
-			"step": "activatePlugin",
-			"pluginPath": "embed-sharepoint-onedrive-documents/embed-sharepoint-onedrive-documents.php"
+			},
+            "options": {
+                "activate": true
+            }
 		}
 	]
 }
