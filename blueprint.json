@@ -1,5 +1,4 @@
 {
-	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"landingPage": "/wp-admin/admin.php?page=mo_sps&tab=app_config",
 	"preferredVersions": {
 		"php": "8.0",
@@ -27,20 +26,6 @@
 		{
 			"step": "activatePlugin",
 			"pluginPath": "embed-sharepoint-onedrive-documents/embed-sharepoint-onedrive-documents.php"
-		},
-		{
-			"step": "writeFile",
-			"path": "/wordpress/wp-content/mu-plugins/playground-welcome-notice.php",
-			"data": "<?php\n/**\n * Plugin Name: Playground Welcome Notice\n * Description: Shows a welcome message for the live preview\n */\n\nif ( ! defined( 'ABSPATH' ) ) {\n\texit;\n}\n\nadd_action( 'admin_notices', function() {\n\t$screen = get_current_screen();\n\tif ( isset( $_GET['page'] ) && 'mo_sps' === $_GET['page'] ) {\n\t\t?>\n\t\t<div class=\"notice notice-info is-dismissible\" style=\"border-left-color: #0078d4;\">\n\t\t\t<h3 style=\"margin-top: 10px;\">👋 Welcome to the Live Preview!</h3>\n\t\t\t<p><strong>You are testing the Embed SharePoint OneDrive Documents plugin in a safe sandbox environment.</strong></p>\n\t\t\t<p>This plugin allows you to:</p>\n\t\t\t<ul style=\"list-style: disc; margin-left: 20px;\">\n\t\t\t\t<li>📁 Embed SharePoint and OneDrive documents directly into your WordPress site</li>\n\t\t\t\t<li>🔗 Configure Microsoft Azure AD connections</li>\n\t\t\t\t<li>📄 Preview and embed Office documents (Word, Excel, PowerPoint, PDF)</li>\n\t\t\t\t<li>🎨 Customize display options with shortcodes</li>\n\t\t\t\t<li>🤖 Integrate with Microsoft Copilot</li>\n\t\t\t</ul>\n\t\t\t<p><strong>💡 Quick Start:</strong></p>\n\t\t\t<ul style=\"list-style: decimal; margin-left: 20px;\">\n\t\t\t\t<li>Navigate through the tabs above to explore different features</li>\n\t\t\t\t<li>Check the <strong>Connection</strong> tab to see Azure AD setup options</li>\n\t\t\t\t<li>Visit <strong>Embed Options</strong> to see available shortcodes</li>\n\t\t\t\t<li>Explore <strong>Advanced Settings</strong> for customization options</li>\n\t\t\t</ul>\n\t\t\t<p style=\"background: #fff3cd; padding: 10px; border-radius: 4px; border-left: 4px solid #ffc107;\">\n\t\t\t\t<strong>⚠️ Note:</strong> This is a demo environment. Actual SharePoint/OneDrive connections require valid Azure AD credentials and cannot be tested here. However, you can explore the full configuration interface.\n\t\t\t</p>\n\t\t\t<p>📚 <a href=\"https://plugins.miniorange.com/microsoft-sharepoint-wordpress-integration\" target=\"_blank\" rel=\"noopener noreferrer\">View Documentation</a> | \n\t\t\t📹 <a href=\"https://www.youtube.com/channel/UCOOwswgYMxGTxIgRGYdn-cA\" target=\"_blank\" rel=\"noopener noreferrer\">Watch Video Tutorials</a></p>\n\t\t</div>\n\t\t<?php\n\t}\n});\n"
-		},
-		{
-			"step": "writeFile",
-			"path": "/wordpress/wp-content/mu-plugins/playground-demo-content.php",
-			"data": "<?php\n/**\n * Plugin Name: Playground Demo Content\n * Description: Adds demo content for the live preview\n */\n\nif ( ! defined( 'ABSPATH' ) ) {\n\texit;\n}\n\n// Add a sample page with shortcode documentation\nadd_action( 'init', function() {\n\tif ( ! get_page_by_path( 'sharepoint-demo' ) ) {\n\t\t$page_content = \"<!-- wp:heading -->\n<h2>SharePoint OneDrive Documents Demo</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>This page demonstrates how to embed SharePoint and OneDrive documents using shortcodes.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\\\"level\\\":3} -->\n<h3>Example Shortcodes</h3>\n<!-- /wp:heading -->\n\n<!-- wp:code -->\n<pre class=\\\"wp-block-code\\\"><code>[mo_sharepoint_documents url='https://yourdomain.sharepoint.com/Documents/sample.docx']</code></pre>\n<!-- /wp:code -->\n\n<!-- wp:code -->\n<pre class=\\\"wp-block-code\\\"><code>[mo_onedrive_embed file_id='your_file_id' width='100%' height='600px']</code></pre>\n<!-- /wp:code -->\n\n<!-- wp:paragraph -->\n<p><strong>Note:</strong> To use these shortcodes, you need to configure your Azure AD application in the Connection tab first.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\\\"level\\\":3} -->\n<h3>Features</h3>\n<!-- /wp:heading -->\n\n<!-- wp:list -->\n<ul>\n<li>Embed Word, Excel, PowerPoint, and PDF files</li>\n<li>Support for both SharePoint and OneDrive</li>\n<li>Customizable display options</li>\n<li>Responsive design</li>\n<li>Microsoft Copilot integration</li>\n</ul>\n<!-- /wp:list -->\";\n\n\t\twp_insert_post( array(\n\t\t\t'post_title'   => 'SharePoint Demo',\n\t\t\t'post_content' => $page_content,\n\t\t\t'post_status'  => 'publish',\n\t\t\t'post_type'    => 'page',\n\t\t\t'post_name'    => 'sharepoint-demo'\n\t\t) );\n\t}\n}, 99 );\n"
-		},
-		{
-			"step": "runPHP",
-			"code": "<?php require_once 'wordpress/wp-load.php'; update_option( 'mo_sps_playground_preview', '1' ); echo 'Live Preview environment configured successfully!';"
 		}
 	]
 }
